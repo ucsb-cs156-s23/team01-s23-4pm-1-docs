@@ -1,0 +1,43 @@
+name: "38-gh-pages-deploy-frontend — Deploy to GitHub Pages"
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+          # Repository name with owner. For example, actions/checkout
+          # Default: ${{ github.repository }}
+          repository: ${{ vars.ucsb-cs156-s23/STARTER-team01 }}
+    
+    - name: Install Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 16.x
+    
+    - name: Install NPM packages
+      run: npm ci
+      working-directory: ./frontend
+
+    - name: Build Storybook
+      working-directory: ./frontend
+      run: | # Install npm packages and build the Storybook files
+        mkdir -p docs-build
+        npx build-storybook --docs 
+
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        folder: ./frontend/storybook-static # The folder the action should deploy.
+        branch: gh-pages
