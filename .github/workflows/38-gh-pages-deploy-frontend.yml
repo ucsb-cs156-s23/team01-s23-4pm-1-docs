@@ -19,7 +19,7 @@ jobs:
       with:
          path: 'this_repo'
     
-    - name: Debug Env Variables
+    - name: Debug Env Variables and list files
       run: |
         THIS_REPO="${{github.repository}}"
         SOURCE_REPO="${THIS_REPO/-docs/}"
@@ -28,12 +28,19 @@ jobs:
         echo "THIS_REPO=${THIS_REPO}"
         echo "SOURCE_REPO=${SOURCE_REPO}"
         echo "SOURCE_REPO=${SOURCE_REPO}" >> $GITHUB_ENV
+        pwd
+        ls -ld 
     
     - name: Checkout code
       uses: actions/checkout@v2
       with:
         repository: ${{ env.SOURCE_REPO }}
     
+    - name: list files
+      run: |
+        pwd
+        ls -ld 
+
     - name: Install Node.js
       uses: actions/setup-node@v1
       with:
