@@ -14,6 +14,16 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+    # - name: Checkout local code
+    #   uses: actions/checkout@v2
+
+    - name: Debug Env Variables
+      run:
+        echo "DOCS_SOURCE_REPO=${{vars.DOCS_SOURCE_REPO}}"
+        echo "GITHUB_REPOSITORY=${{vars.GITHUB_REPOSITORY}}"
+        echo "GITHUB_REPOSITORY=${{vars.GITHUB_REPOSITORY/-docs/}}"
+
+     
     - name: Checkout code
       uses: actions/checkout@v2
       with:
@@ -31,8 +41,9 @@ jobs:
     - name: Build Storybook
       working-directory: ./frontend
       run: | # Install npm packages and build the Storybook files
-        mkdir -p docs-build
+        # mkdir -p docs-build
         npx build-storybook --docs 
+        
 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@v4
