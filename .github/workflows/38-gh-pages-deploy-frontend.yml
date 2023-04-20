@@ -31,7 +31,6 @@ jobs:
       uses: actions/checkout@v2
       with:
         repository: ${{ env.SOURCE_REPO }}
-        path: 'source_repo'
     
     - name: Install Node.js
       uses: actions/setup-node@v1
@@ -40,16 +39,15 @@ jobs:
     
     - name: Install NPM packages
       run: npm ci
-      working-directory: ./source_repo/frontend
+      working-directory: frontend
 
     - name: Build Storybook
-      working-directory: ./source_repo/frontend
+      working-directory: frontend
       run: | # Install npm packages and build the Storybook files
         npx build-storybook --docs
         
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@v4
-      working-directory: ./source_repo
       with:
         folder: frontend/storybook-static # The folder the action should deploy.
         branch: gh-pages
