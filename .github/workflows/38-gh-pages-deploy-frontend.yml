@@ -17,9 +17,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
       with:
-          # Repository name with owner. For example, actions/checkout
-          # Default: ${{ github.repository }}
-          repository: ${{ vars.ucsb-cs156-s23/STARTER-team01 }}
+        repository: 'ucsb-cs156-s23/STARTER-team01'
     
     - name: Install Node.js
       uses: actions/setup-node@v1
