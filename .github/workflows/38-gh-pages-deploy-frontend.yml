@@ -21,7 +21,8 @@ jobs:
       run:
         echo "DOCS_SOURCE_REPO=${{vars.DOCS_SOURCE_REPO}}"
         echo "GITHUB_REPOSITORY=${{GITHUB_REPOSITORY}}"
-        #echo "GITHUB_REPOSITORY=${{vars.GITHUB_REPOSITORY/-docs/}}"
+        SOURCE_REPO=${GITHUB_REPOSITORY\/-docs\//}
+        echo "SOURCE_REPO=${{SOURCE_REPO}}"
 
     - name: Checkout code
       uses: actions/checkout@v2
@@ -40,9 +41,11 @@ jobs:
     - name: Build Storybook
       working-directory: ./frontend
       run: | # Install npm packages and build the Storybook files
-        npx build-storybook --docs 
+        npx build-storybook --docs
+        echo "DOCS_SOURCE_REPO=${{vars.DOCS_SOURCE_REPO}}"
+        echo "GITHUB_REPOSITORY=${{GITHUB_REPOSITORY}}"
+        echo "SOURCE_REPO=${{SOURCE_REPO}}" 
         
-
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@v4
       with:
