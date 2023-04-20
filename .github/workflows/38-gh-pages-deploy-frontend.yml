@@ -17,13 +17,12 @@ jobs:
     # - name: Checkout local code
     #   uses: actions/checkout@v2
 
-    - name: Debug Env Variables
-      run:
-        echo "DOCS_SOURCE_REPO=${{vars.DOCS_SOURCE_REPO}}"
-        echo "GITHUB_REPOSITORY=${{vars.GITHUB_REPOSITORY}}"
-        echo "GITHUB_REPOSITORY=${{vars.GITHUB_REPOSITORY/-docs/}}"
+    # - name: Debug Env Variables
+    #   run:
+    #     echo "DOCS_SOURCE_REPO=${{vars.DOCS_SOURCE_REPO}}"
+    #     echo "GITHUB_REPOSITORY=${{vars.GITHUB_REPOSITORY}}"
+    #     echo "GITHUB_REPOSITORY=${{vars.GITHUB_REPOSITORY/-docs/}}"
 
-     
     - name: Checkout code
       uses: actions/checkout@v2
       with:
@@ -41,7 +40,7 @@ jobs:
     - name: Build Storybook
       working-directory: ./frontend
       run: | # Install npm packages and build the Storybook files
-        # mkdir -p docs-build
+        echo mkdir -p docs-build
         npx build-storybook --docs 
         
 
