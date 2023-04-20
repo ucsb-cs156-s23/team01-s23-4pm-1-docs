@@ -19,9 +19,9 @@ jobs:
 
     - name: Debug Env Variables
       run:
+        THIS_REPO="${{github.repository}}"
+        SOURCE_REPO="${THIS_REPO/-docs//}"
         echo "DOCS_SOURCE_REPO=${{vars.DOCS_SOURCE_REPO}}"
-        THIS_REPO=${{github.repository}}
-        SOURCE_REPO=${THIS_REPO/-docs//}
         echo "github.repository=${{github.repository}}"
         echo "THIS_REPO=${THIS_REPO}"
         echo "SOURCE_REPO=${SOURCE_REPO}"
@@ -44,8 +44,6 @@ jobs:
       working-directory: ./frontend
       run: | # Install npm packages and build the Storybook files
         npx build-storybook --docs
-        echo "DOCS_SOURCE_REPO=${{vars.DOCS_SOURCE_REPO}}"
-        echo "github.repository=${{github.repository}}"
         
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@v4
