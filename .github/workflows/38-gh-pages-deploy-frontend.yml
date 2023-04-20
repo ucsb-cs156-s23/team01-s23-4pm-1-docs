@@ -20,7 +20,7 @@ jobs:
     - name: Debug Env Variables
       run:
         echo "DOCS_SOURCE_REPO=${{vars.DOCS_SOURCE_REPO}}"
-        echo "GITHUB_REPOSITORY=${{vars.GITHUB_REPOSITORY}}"
+        echo "GITHUB_REPOSITORY=${{env.GITHUB_REPOSITORY}}"
         #echo "GITHUB_REPOSITORY=${{vars.GITHUB_REPOSITORY/-docs/}}"
 
     - name: Checkout code
