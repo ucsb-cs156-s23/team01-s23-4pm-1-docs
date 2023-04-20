@@ -18,7 +18,7 @@ jobs:
     #   uses: actions/checkout@v2
 
     - name: Debug Env Variables
-      run:
+      run: |
         THIS_REPO="${{github.repository}}"
         SOURCE_REPO="${THIS_REPO/-docs//}"
         echo "DOCS_SOURCE_REPO=${{vars.DOCS_SOURCE_REPO}}"
