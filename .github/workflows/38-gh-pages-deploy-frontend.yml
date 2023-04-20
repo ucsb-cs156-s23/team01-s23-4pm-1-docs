@@ -21,8 +21,6 @@ jobs:
       run:
         echo "DOCS_SOURCE_REPO=${{vars.DOCS_SOURCE_REPO}}"
         echo "github.repository=${{github.repository}}"
-        SOURCE_REPO=${{github.repository/-docs/}}
-        echo "SOURCE_REPO=${{SOURCE_REPO}}"
 
     - name: Checkout code
       uses: actions/checkout@v2
@@ -44,7 +42,6 @@ jobs:
         npx build-storybook --docs
         echo "DOCS_SOURCE_REPO=${{vars.DOCS_SOURCE_REPO}}"
         echo "github.repository=${{github.repository}}"
-        echo "SOURCE_REPO=${{SOURCE_REPO}}" 
         
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@v4
