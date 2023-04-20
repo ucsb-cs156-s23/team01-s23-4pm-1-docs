@@ -29,7 +29,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
       with:
-        repository: ${SOURCE_REPO}
+        repository: ${{ env.SOURCE_REPO }}
     
     - name: Install Node.js
       uses: actions/setup-node@v1
