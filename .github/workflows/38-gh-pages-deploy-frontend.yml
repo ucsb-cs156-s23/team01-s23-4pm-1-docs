@@ -20,7 +20,7 @@ jobs:
     - name: Debug Env Variables
       run: |
         THIS_REPO="${{github.repository}}"
-        SOURCE_REPO="${THIS_REPO/-docs//}"
+        SOURCE_REPO="${THIS_REPO/-docs/}"
         echo "DOCS_SOURCE_REPO=${{vars.DOCS_SOURCE_REPO}}"
         echo "github.repository=${{github.repository}}"
         echo "THIS_REPO=${THIS_REPO}"
