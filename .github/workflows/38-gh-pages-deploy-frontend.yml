@@ -25,7 +25,7 @@ jobs:
         echo "github.repository=${{github.repository}}"
         echo "THIS_REPO=${THIS_REPO}"
         echo "SOURCE_REPO=${SOURCE_REPO}"
-         
+        echo "SOURCE_REPO=${SOURCE_REPO}" >> $GITHUB_ENV
     - name: Checkout code
       uses: actions/checkout@v2
       with:
