@@ -65,9 +65,15 @@ jobs:
       run: |
         pwd
         ls -lRt
- 
+
+    - name: compose web site
+      run: |
+        mkdir site
+        cp -r source_repo/frontend/storybook-static site
+        cp this_repo/index.html site
+
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@v4
       with:
-        folder: source_repo/frontend/storybook-static # The folder the action should deploy.
+        folder: site # The folder the action should deploy.
         branch: gh-pages
