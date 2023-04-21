@@ -14,6 +14,12 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+    # The redundant checkout is to establish a git repo 
+    # so that JamesIves/github-pages-deploy-action@v4 works properly
+    - name: Checkout local code to establish repo
+      uses: actions/checkout@v2
+   
+    # This is so we have access to the source repo
     - name: Checkout local code
       uses: actions/checkout@v2
       with:
